@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      #move{
+        position: relative;
+        left:-60px;
+        top:5px;
+        width:50px;
+        height:50px;
+        animation: load 1.5s linear 0s infinite;
+      }
+      @keyframes load {
+        0%{
+          left:-60px;
+          opacity: 1;
+        }
+        100%{
+          left:140px;
+          opacity: 0.5;
+        }
+        
+        
+      }
+      #move1{
+        position: relative;
+        left:-110px;
+        top:5px;
+        width:50px;
+        height:50px;
+        animation: load1 1.5s linear 0.5s infinite;
+      }
+      @keyframes load1 {
+        0%{
+          left:-110px;
+          opacity: 1;
+        }
+        100%{
+          left:90px;
+          opacity: 0.5;
+        }
+      }
+      #move2{
+        position: relative;
+        left:40px;
+        top:5px;
+        width:50px;
+        height:50px;
+        animation: load2 1.5s linear 1s infinite;
+      }
+      @keyframes load2 {
+        0%{
+          left:-160px;
+          opacity: 1;
+        }
+        100%{
+          left:40px;
+          opacity: 0.5;
+        }
+      }
+      .ani1{
+        z-index: 3;position:fixed;top:0%;left:0%;width:100vw;height:100vh;background-color:rgba(255,255,255,0.6);text-align: center;
+      }
+      .ani2{
+        color:yellow;border-radius:20px;z-index: 4;position:absolute;top:35%;left:40%;width:280px;background-color:light;text-align: center;
+      }
+      .ani3{
+        font-size: 50px;width:100%;font-family: 'Times New Roman', Times, serif;
+      }
+      #img1{
+        position:relative;left:-10px;top:5px;width:50px;height:50px;
+      }
+      #img2{
+        width:40px;height:40px;
+      }
+    </style>
+    <title>Expense Tracker</title>
+  </head>
+  <body>
+    <div class="ani1"></div>
+    <div class="ani2">
+      <div class="ani3">Loading...</div>
+      <div><img src="coin.png" id="img1" /><img id="move" src="coin.png"/><img id="move1" src="coin.png"/><img id="move2" src="coin.png"/><img src="icon1.png" id="img2"/> </div>
+    </div>
+  </body>
+</html>

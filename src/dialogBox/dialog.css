@@ -1,0 +1,78 @@
+.dialog{
+    z-index: 5;
+    top:0%;
+    width:100%;
+    height:100vh;
+    border:none;
+    position:absolute;
+    background-color:rgba(107, 107, 107,0.7);
+    
+}
+.box{
+    z-index: 6;
+    top:30%;
+    left:30%;
+    opacity:1;
+    width:40%;
+    color:black;
+    display: block;
+    padding:10px 5px 20px 10px;
+    position:absolute;
+    background-color: white;
+}
+.btn1 {
+    border:none;
+    background-color:white;
+    color:black;
+    float:right;
+}
+.scol{
+    width:90%;
+    float:left;
+    margin:10px;
+}
+.sscol{
+    width:40%;
+    float:left;
+    margin:10px;
+}
+.scol1{
+    width:65%;
+    font-size: 22px;
+    float:left;
+}
+.scol2{
+    width:65%;
+    float:left;
+    font-size:20px;
+}
+.scol3{
+    border:1px solid pink;
+    width:60%;
+    float:left;
+    margin:10px 20%;
+}
+.sinput{
+    width:90%;
+    border:1px solid lightgrey;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:10px;
+    padding:5px;
+    font-size:17px; 
+}
+.text2{
+    color:#1f5e99;
+    text-shadow: -0.5px 0.5px 0 #fce80a,0.5px 0.5px 0 #fff,0.5px -0.5px 0 #fff,-0.5px -0.5px 0 #fff;
+    position:relative;
+    font-size:25px ;
+    top:-2px;
+    width:30%;
+    float:left;
+}
+.tdialog{
+    width:100%; 
+}
+.tdialog td{
+    text-align:center;
+    width:50%;
+}
