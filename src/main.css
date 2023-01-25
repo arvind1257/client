@@ -1,6 +1,3 @@
-body{
-    overflow: hidden;
-}
 .header,.header1{
     top:0%;
     width:100%;
@@ -40,16 +37,30 @@ body{
 }
 .loginform{
     width:100%;
+    word-break: break-word;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
-fieldset{
+.fieldset{
     top:10%;
     width:35%;
     border:none;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: initial;
     border-top:5px solid #fce80a;
     border-bottom:5px solid #fce80a;
     background-color:white;
     box-shadow:0px 0px 2px 2px #b5b4a7; 
     text-align:center;
+}
+.legend{
+    float: none;
+    width: initial;
 }
 .text{
     color:#1f5e99;
@@ -59,7 +70,7 @@ fieldset{
 }
 .login__field{ 
     position: relative;
-    width:80%;
+    width:90%;
     align-items: center;
     
 }
@@ -79,7 +90,7 @@ fieldset{
     height: 10%; 
 }
 .button{ 
-    padding:5px 30%; 
+    padding:5px 0px; 
     background-color:#1f5e99;
     color:white; 
     width:90%; 
@@ -167,7 +178,7 @@ fieldset{
     background-color:yellow;
 }
 .action{
-    background-color:white;
+    background-color: transparent;
     border:none;
 }
 .edit{

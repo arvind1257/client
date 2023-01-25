@@ -6,7 +6,9 @@ import "../inputstyle.css"
 import React,{useState} from "react"
 import { logIn } from "../actions/auth"
 import { useDispatch } from "react-redux"
-import { Form, Fieldset, Slink1 } from "../mediaQuery/mediaQuery"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "../main.css"
+import { Form, Slink1 } from "../mediaQuery/mediaQuery"
 
 
 const Main = (props) => {
@@ -28,9 +30,9 @@ const Main = (props) => {
 
     return (
             <Form className="form">
-                <div className="loginform center">
-                    <Fieldset className="center">
-                        <legend className="center">
+                <div className="row loginform">
+                    <fieldset className="col-xl-4 col-lg-5 col-md-6 col-sm-7 col-8 fieldset center">
+                        <legend className="legend center">
                             <img src={img1}
                                 alt="no img"
                                 className="iconstyle"/>
@@ -72,6 +74,7 @@ const Main = (props) => {
                                 <h4 className="line">
                                     <span>or</span>
                                 </h4>
+                                <br/>
                                 <div>
                                     Create an Account?&ensp;
                                     <Link to="/signup"
@@ -84,9 +87,10 @@ const Main = (props) => {
                                         Sign Up
                                     </Link>
                                 </div>
+                                <br/>
                             </center>
                         </form>
-                    </Fieldset>
+                    </fieldset>
                 </div>
             </Form>
         )

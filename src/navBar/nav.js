@@ -40,25 +40,68 @@ const Nav = () =>{
 
     return (
         <>
-            <Button id="x" className="container" onClick={MyFunction}>
+            <Button id="x" className="container1" onClick={MyFunction}>
                 <Bar1 className="bar1"></Bar1>
                 <Bar2 className="bar2"></Bar2>
                 <Bar3 className="bar3"></Bar3>
             </Button>
-            <Nav1 id="navbar" className="navbar" value="open">
+            <Nav1 style={{position:"fixed"}} id="navbar" className="navbar" value="open">
                 <ul>
-                    <li><Link to="/home"><Link1 className="link"><I className="fas fas1 fa-home"></I><Span className="nav-item">Home</Span></Link1></Link></li>
-                    <li><Link to="/filter"><Link1 className="link"><I className="fas fas1 fa-filter"></I><Span className="nav-item">Filter</Span></Link1></Link></li>
-                    <li><Link to="/report"><Link1 className="link"><I className='fas fas1 fa-chart-bar'></I><Span className="nav-item">Report</Span></Link1></Link></li>
-                    <li><button style={{left:"-2px",position:"relative",border:"none",backgroundColor:"#fce80a"}} onClick={() => open2()}><Link1 className="btn"><I className="fas fas1 fa-gear"></I><Span className="nav-item">Settings</Span></Link1></button></li>
-                    <li><Link to="/contact"><Link1 className="link"><I className="fas fas1 fa-envelope"></I><Span className="nav-item">Contact</Span></Link1></Link></li>            
+                    <li>
+                        <Link to="/home">
+                            <Link1 className="link">
+                                <I className="fas fas1 fa-home"></I>
+                                <Span className="nav-item">Home</Span>
+                            </Link1>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/filter">
+                            <Link1 className="link">
+                                <I className="fas fas1 fa-filter"></I>
+                                <Span className="nav-item">Filter</Span>
+                            </Link1>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/report">
+                            <Link1 className="link">
+                                <I className='fas fas1 fa-chart-bar'></I>
+                                <Span className="nav-item">Report</Span>
+                            </Link1>
+                        </Link>
+                    </li>
+                    <li>
+                        <button style={{left:"-2px",position:"relative",border:"none",backgroundColor:"#fce80a"}} onClick={() => open2()}>
+                            <Link1 className="btn10">
+                                <I className="fas fas1 fa-gear"></I>
+                                <Span className="nav-item">Settings</Span>
+                            </Link1>
+                        </button>
+                    </li>
+                    <li>
+                        <Link to="/contact">
+                            <Link1 className="link">
+                                <I className="fas fas1 fa-envelope"></I>
+                                <Span className="nav-item">Contact</Span>
+                            </Link1>
+                        </Link>
+                    </li>            
                 </ul>
                 <ul>
-                    <li><button style={{left:"-5px",position:"relative",border:"none",backgroundColor:"#fce80a"}} onClick={() => logout()}><Link1 className="link1"><I className="fas fa-sign-out-alt fas1" aria-hidden="true"></I><Span className="nav-item">Logout</Span></Link1></button></li>
+                    <li>
+                        <button style={{left:"-5px",position:"relative",border:"none",backgroundColor:"#fce80a"}} onClick={() => logout()}>
+                            <Link1 className="link1">
+                                <I className="fas fa-sign-out-alt fas1" aria-hidden="true"></I>
+                                <Span className="nav-item">Logout</Span>
+                            </Link1>
+                        </button>
+                    </li>
                 </ul>
             </Nav1>
             {
-                display==="true" && <Dialog displayData={{'id':sessionStorage.getItem("userId")}} display={display} close={close}/>
+                display==="true" && 
+                <Dialog displayData={{'id':sessionStorage.getItem("userId")}} display={display} close={close}/>
             }
             
         </>

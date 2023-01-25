@@ -5,7 +5,8 @@ import "../inputstyle.css";
 import React,{useState} from "react";
 import { signUp } from "../actions/auth";
 import { useDispatch } from "react-redux";
-import { Form, Fieldset, Slink2, Text, Scol1 } from "../mediaQuery/mediaQuery"
+import "bootstrap/dist/css/bootstrap.min.css"
+import { Form, Scol1, Slink2, Text } from "../mediaQuery/mediaQuery"
 
 
 const Main = (props) => {
@@ -37,9 +38,9 @@ const Main = (props) => {
     }
 
     return (
-            <Form style={{border:"1px solid black"}} className="form1">
-                <div className="loginform center">
-                    <Fieldset className="center signup">
+            <Form className="form1">
+                <div className="row loginform">
+                    <fieldset className="col-xl-5 col-lg-6 col-md-7 col-sm-8 col-9 fieldset center signup">
                         <form onSubmit={handleSubmit}>
                         <h1 className="text signup">SIGN UP</h1>
                         <br/>
@@ -82,11 +83,12 @@ const Main = (props) => {
                         <h4 className="line">
                             <span>or</span>
                         </h4>
-                        <div>
+                        <br/>
+                        <div style={{paddingBottom:"10px"}}>
                             Already have Account?&ensp;
                             <Link to="/" style={{color: "blue",textDecoration: "underline"}}>Login</Link>
                         </div>
-                    </Fieldset>
+                    </fieldset>
                 </div>
             </Form>
         )

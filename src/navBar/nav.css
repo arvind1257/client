@@ -11,15 +11,15 @@
     background-color: #fce80a;
 }
 ul{
-    top:50px;
+    top:-10px;
     position: relative;
 }
 li{
     margin: 5px 0px;
 }
-.link,.link1,.btn{
+.link,.link1,.btn10{
     text-align: left;
-    left:0px;
+    left:7px;
     height:50px;
     border:none;
     position: relative;
@@ -28,11 +28,8 @@ li{
     padding:12px 0px 20px 0px ;
     color:#1f5e99;
 }
-.btn{
-    left:-4px;
-}
-.link1{
-    bottom:-100px;
+.btn10{
+    left:2px;
 }
 .nav-item{
     left: 75px;
@@ -47,7 +44,7 @@ li{
     font-size: 20px;
     color:#1f5e99;
 }
-.link:hover,.btn:hover{ 
+.link:hover,.btn10:hover{ 
     background:#eee;
 }
 .link1:hover{
@@ -79,7 +76,7 @@ li{
     position: relative; 
     text-align: center;
 }
-.container {
+.container1 {
     z-index:5;
     top:10px    ;
     left: 20px;

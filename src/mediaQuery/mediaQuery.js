@@ -38,22 +38,22 @@ export const Fieldset = Styled.fieldset`
 `;
 export const Slink1 = Styled.button`
     @media (max-width: 800px) {
-        padding:3px 27%; 
+        padding:3px; 
         font-size:30px; 
     }   
     @media (max-width: 450px) {
-        padding:3px 24%; 
+        padding:3px; 
         font-size:25px; 
     }   
 `;
 export const Slink2 = Styled.button`
     width:60%;
     @media (max-width: 800px) {
-        padding:3px 27%; 
+        padding:3px; 
         font-size:30px; 
     }   
     @media (max-width: 450px) {
-        padding:3px 24%; 
+        padding:3px; 
         font-size:25px; 
     }   
 `;
@@ -67,7 +67,6 @@ export const Text = Styled.div`
         top:2px;
     }
     @media (max-width: 450px) {
-        width:35%;
         &.signup{
             font-size:18px;
         }
@@ -203,6 +202,9 @@ export const SPAN = Styled.span`
         font-size:22px;
         display:block;
         width:100%;
+        &.lh{
+            margin-top:-40px;
+        }
     }
 `;
 export const Atext = Styled.div`

@@ -6,6 +6,8 @@ import "../fontawesome.css"
 import Chart from "chart.js/auto";
 import { useSelector } from "react-redux"
 import { format } from "date-fns"
+import "bootstrap/dist/css/bootstrap.min.css"
+import { Table } from "react-bootstrap"
 import { Home1, Atext, SPAN, Tab, Tablemain } from "../mediaQuery/mediaQuery"
 
 const Home = (props) => {   
@@ -46,7 +48,7 @@ const Home = (props) => {
                             <span className="amount">{user.result.cashType}{ecash}</span>
                         </SPAN>
                         &ensp;
-                        <SPAN>
+                        <SPAN className="lh"> 
                             <i className="fa fa1 fa-bank"></i>:
                             <span className="amount">{user.result.cashType}{ebank}</span>
                         </SPAN>
@@ -58,7 +60,7 @@ const Home = (props) => {
                             <span className="amount">{user.result.cashType}{icash}</span>
                         </SPAN>
                         &ensp;
-                        <SPAN>
+                        <SPAN className="lh">
                             <i className="fa fa1 fa-bank"></i>:
                             <span className="amount">{user.result.cashType}{ibank}</span>
                         </SPAN>
@@ -78,7 +80,7 @@ const Home = (props) => {
                         <span className="content">: Income</span>
                     </Tab>
                     <Tablemain className="tablemain">
-                        <table className="tablestyle center">
+                        <Table className="tablestyle center" hover>
                             <thead>
                                 <tr>
                                     <th align="center">Sno</th>
@@ -135,7 +137,7 @@ const Home = (props) => {
                                     ))}</>
                                 }
                                  </tbody>
-                        </table>
+                        </Table>
                     </Tablemain>
                 </Home1>
             </div>
