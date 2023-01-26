@@ -15,7 +15,9 @@ export const Add = (featureData,navigate,displayData) => async (dispatch) => {
 
 export const Display = (displayData) => async (dispatch) => {
     try{
+        console.log(displayData)
         const { data } = await api.Display(displayData)
+        console.log(data)
         dispatch({type:"DISPLAY_DATA",payload: data})
     }
     catch(err){
@@ -35,11 +37,13 @@ export const Modify = (featureData,navigate) => async (dispatch) => {
     }
 }
 
-export const Delete = (featureData,navigate) => async (dispatch) => {
+export const Delete = (featureData,navigate,displayData) => async (dispatch) => {
+    console.log(featureData);
     try{
         const { data } = await api.Delete(featureData)
         dispatch({type:"FEATURES_DATA",data})
-        navigate('/home');
+        dispatch(Display(displayData))
+        navigate('/home',{state:null});
     }
     catch(err)
     {
