@@ -5,8 +5,9 @@ const Feedback_mess = (props) => {
     return (
         <div className="mess">
             <table style={{ borderCollapse: "collapse", width: "100%" }} cellPadding="10px">
-                { feedback.map((items) => 
-                    <tr>
+                <tbody>
+                { feedback.map((items, i) => 
+                    <tr key={i}>
                         <td className="Sname" style={{ width: "20%" }}>
                             <b>{items.Name}</b>
                         </td>
@@ -18,7 +19,7 @@ const Feedback_mess = (props) => {
                         </td>
                     </tr>
                 ) }
-                
+                </tbody>
             </table>
         </div>
     )

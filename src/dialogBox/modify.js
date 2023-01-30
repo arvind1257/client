@@ -1,19 +1,23 @@
 
 import "./dialog.css"
-import React,{useState} from "react";
-import { Add } from '../actions/features'
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { Dialog, Box } from "../mediaQuery/mediaQuery"
+import React,{useState} from "react"
+import { Modify } from '../actions/features'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import DatePicker from "react-datepicker"
+import { format } from "date-fns"
+import { Dialog, Box } from "../mediaQuery/mediaQuery"
+import "react-datepicker/dist/react-datepicker.css"
 
-const Amount = (props) => {
+const Modifies = (props) => {
 
     var currDate = new Date()
     var minDate = new Date()
     minDate.setDate(1);
-    
+
     const id = sessionStorage.getItem('userId')
+    const [_id,set_Id] = useState('')
+    const [edit,setEdit] = useState(0)
     const [note,setNote] = useState('')
     const [amount,setAmount] = useState('')
     const [date,setDate] = useState(currDate)
@@ -21,15 +25,25 @@ const Amount = (props) => {
     const [type,setType] = useState('cash')
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    var date11 = format(new Date(props.data.date),"yyyy-MM-dd")
+    if(edit===0) {
+        set_Id(props.data._id)
+        setNote(props.data.note)
+        setAmount(props.data.amount)
+        setDate(new Date(date11))
+        setMode(props.data.mode)
+        setType(props.data.type)
+        setEdit(1);
+    }
+    
     const handlesubmit = (e) => {
         e.preventDefault()
-        if(!note||!amount||!date||!mode||!type)
+        if(!note||!amount||!mode||!type)
         {
             alert("Fill all the Details in form")
         }
         else{
-            dispatch(Add({id,note,amount,type,date,mode},navigate,props.displayData))
+            dispatch(Modify({_id,id,note,amount,type,date,mode},navigate,props.displayData))
         }
 
     }
@@ -53,7 +67,7 @@ const Amount = (props) => {
                                 <td colSpan="2">
                                     <center>
                                     <div className="form__group field1 center" style={{marginTop:"-10px"}}>
-                                        <input type="text" className="form__field" placeholder="Note" name="note" id='note' onChange={(e) => setNote(e.target.value)} required />
+                                        <input type="text" value={note} className="form__field" placeholder="Note" name="note" id='note' onChange={(e) => setNote(e.target.value)} required />
                                         <label htmlFor="note" className="form__label">Note</label>
                                     </div>
                                     </center>
@@ -63,7 +77,7 @@ const Amount = (props) => {
                                 <td >
                                 <center>
                                     <div className="form__group field center">
-                                        <input type="text" className="form__field" placeholder="Amount" name="amount" id='amount' onChange={(e) => setAmount(e.target.value)} required />
+                                        <input type="text" value={amount} className="form__field" placeholder="Amount" name="amount" id='amount' onChange={(e) => setAmount(e.target.value)} required />
                                         <label htmlFor="amount" className="form__label">Amount</label>
                                     </div>
                                 </center>    
@@ -71,7 +85,7 @@ const Amount = (props) => {
                                 <td >
                                 <center>
                                     <div className="form__group field center">
-                                        <select className="form__field" name="type" id='type' onChange={(e) => setType(e.target.value)} required >
+                                        <select className="form__field" value={type} name="type" id='type' onChange={(e) => setType(e.target.value)} required >
                                             <option value="cash">CASH</option>
                                             <option value="account">ACCOUNT</option>
                                         </select>
@@ -81,7 +95,7 @@ const Amount = (props) => {
                                 </td>
                             </tr>
                             <tr>
-                                <td >
+                                <td>
                                 <center>
                                     <div className="form__group field center">
                                         <DatePicker className="form__field" selected={date} onChange={(date) => setDate(date)} minDate={minDate} maxDate={currDate} dateFormat='dd MMM, yyyy' isClearable/>
@@ -92,7 +106,7 @@ const Amount = (props) => {
                                 <td >
                                     <center>
                                     <div className="form__group field center">
-                                        <select className="form__field" name="mode1" id='mode1' onChange={(e) => setMode(e.target.value)} required >
+                                        <select className="form__field" value={mode} name="mode1" id='mode1' onChange={(e) => setMode(e.target.value)} required >
                                             <option value="home">HOME EXPENSE</option>
                                             <option value="self">SELF EXPENSE</option>
                                             <option value="income">INCOME</option>
@@ -119,4 +133,4 @@ const Amount = (props) => {
         )
 }
 
-export default Amount
+export default Modifies

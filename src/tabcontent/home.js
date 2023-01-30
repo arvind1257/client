@@ -6,15 +6,16 @@ import "../fontawesome.css"
 import Chart from "chart.js/auto";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { format } from "date-fns"
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Table } from "react-bootstrap"
 import { Delete } from "../actions/features";
+import Modify from "../dialogBox/modify"
 import { Home1, Atext, SPAN, Tab, Tablemain } from "../mediaQuery/mediaQuery"
 import Pagination from "./pagination";
 
-const Home = (props) => {   
+const Home = (props) => {  
     var ecash = 0
     var ebank = 0
     var icash = 0
@@ -23,11 +24,14 @@ const Home = (props) => {
     var totalpage = 0
     var indexoflast = 0
     var indexoffirst = 0
-    const pageNumbers = [];
+    const pageNumbers = []
     const user = props.user
-    const itemsPerPage = 10;
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const itemsPerPage = 10
+    const navigate = useNavigate()
+    const dispatch = useDispatch()   
+    const location = useLocation()
+    const [index, setIndex] = useState(0)
+    const [display,setDisplay] = useState("false")
     const [currentPage,setCurrentPage] = useState(1);
     const items = useSelector(state => state.featureReducer)
     const [arrOfCurrButtons, setArrOfCurrButtons] = useState([])
@@ -127,6 +131,23 @@ const Home = (props) => {
         }
     } 
 
+
+   
+    const modifyAmount = (index) => {
+        setDisplay("true")
+        setIndex(index)
+    }
+    const close = (data) =>{
+        setDisplay(data)
+    }
+    if(location.state)
+    {
+        if(location.state.display==="false" && location.state.close==="Adding" && display==="true")
+        {
+            close("false")
+            navigate('/home',{state:null})
+        }
+    }
         return (
             !items.data || items.data===null ? 
             <><div className="ani1"></div>
@@ -220,7 +241,7 @@ const Home = (props) => {
                                             }
                                         </td>
                                         <td style={{textAlign:"center"}}>
-                                            <button className="action">
+                                            <button className="action" onClick={() => modifyAmount(indexoffirst+i)}>
                                                 <i className="fas edit fa-pencil-alt"></i>
                                             </button>
                                             /
@@ -236,6 +257,9 @@ const Home = (props) => {
                     </Tablemain>
                     <Pagination modifiedPage={arrOfCurrButtons} originalPage={pageNumbers} paginate={paginate} nextPage={nextPage} prevPage={prevPage} />
                 </Home1>
+                { display==="true" &&
+                    <Modify name="Adding" data={items.data[index]} displayData={{id:user.result._id}} display={display} close={close}/>
+                }
             </div>
         )
 }

@@ -18,8 +18,9 @@ const Messages = (props) => {
   return (
     <Mess className="mess">
       <table style={{ borderCollapse: "collapse", width: "100%" }} cellPadding="10px">
+        <tbody>
         {query.map((items, i) => (
-          <tr>
+          <tr key={i}>
             <td>
               <b>{items.Name}&ensp;:<br></br></b>
               <p>
@@ -31,7 +32,7 @@ const Messages = (props) => {
         ))}
         {!reply && (
           <tr>
-            <td colspan="3" align="right" className="reply">
+            <td colSpan="3" align="right" className="reply">
               <div onClick={close} className="abtn">
                 reply
               </div>
@@ -51,6 +52,7 @@ const Messages = (props) => {
             </td>
           </tr>
         )}
+        </tbody>
       </table>
     </Mess>
   );

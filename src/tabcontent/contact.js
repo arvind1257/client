@@ -129,8 +129,8 @@ const Tabcontent = (props) => {
         }
         return items
     })
-
-    for (let i = 0; i < maxValue1.length; i++) {
+    console.log(query2)
+    for (let i = 0; i <maxValue1.length; i++) {
         query1.push(<Mess user={user} id={maxValue1[i]} data={query2}/>)
     }
 
@@ -154,7 +154,7 @@ const Tabcontent = (props) => {
                 contact === "query" && (
                     <Contact id="query" className="contact">
                         <div className="question" style={{float: "left"}}>
-                            <lable htmlFor="enquiry">Post your Questions :</lable>
+                            <label htmlFor="enquiry">Post your Questions :</label>
                             <br/>
                             <textarea name="enquiry" rows="4" cols="60"></textarea>
                             <div className="form__group field3">
@@ -165,12 +165,16 @@ const Tabcontent = (props) => {
                         <br/>
                         <br/>
                         <br/>
-                        <Message id="message1" className="message">
+                        <Message key={1} id="message1" className="message">
                             <div className="search1">
                                 Posted Questions :
                                 <Search className="search" type="search" id="mySearch1" name="search1" onKeyUp={click} placeholder="Search.."/>
                             </div>
-                            {query1}
+                            {
+                            maxValue1.map((items) => {
+                                return <Mess user={user} id={items} data={query2}/>
+                            })
+                            }
                         </Message>
                     </Contact>
                 )
@@ -194,7 +198,11 @@ const Tabcontent = (props) => {
                                 Posted Feedbacks :
                                 <input className="search" type="search" id="mySearch2" name="search2" onKeyUp={click1} placeholder="Search.."/>
                             </div>
-                            {feedback1}
+                            {
+                            maxValue2.map((items) => {
+                                return <Mess1 user={user} id={items} data={feedback2}/>
+                            })
+                            }
                         </div>
                     </Contact>
                 )
