@@ -129,7 +129,7 @@ const Tabcontent = (props) => {
         }
         return items
     })
-    console.log(query2)
+    
     for (let i = 0; i <maxValue1.length; i++) {
         query1.push(<Mess user={user} id={maxValue1[i]} data={query2}/>)
     }

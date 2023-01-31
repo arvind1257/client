@@ -80,7 +80,7 @@ const Settings = (props) => {
                         </Scol1>
                     </div>
                     <center>
-                        <div className='scol3' style={{}}>
+                        <div className='scol3'>
                             {
                                 !edit && 
                                 <div style={{margin:"0px auto",position: "relative"}}>

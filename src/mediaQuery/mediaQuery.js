@@ -238,6 +238,7 @@ export const Tablemain = Styled.div`
     }
 `;
 export const Fheader = Styled.table`
+    width:45%;
     @media (max-width: 1100px){
         width:60%;
     }
