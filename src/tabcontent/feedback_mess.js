@@ -9,7 +9,7 @@ const Feedback_mess = (props) => {
                 { feedback.map((items, i) => 
                     <tr key={i}>
                         <td className="Sname" style={{ width: "20%" }}>
-                            <b>{items.Name}</b>
+                            <b>{items.name}</b>
                         </td>
                         <td style={{ width: "2%" }} className="colan">
                             <b>:&ensp;</b>

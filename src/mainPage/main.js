@@ -8,11 +8,11 @@ import { Display } from "../actions/features";
 import NewUser from "../tabcontent/newUser";
 import Home from "../tabcontent/home";
 import Filter from "../tabcontent/filter";
-import Report from "../tabcontent/report";
 import Contact from "../tabcontent/contact";
+import { DisplayPost } from "../actions/contact"
 import { useLocation, useNavigate } from "react-router-dom";
 
-const Main = (props) => {
+const Main = () => {
 
     var user = JSON.parse(localStorage.getItem("profile"));
     const location = useLocation();
@@ -26,14 +26,16 @@ const Main = (props) => {
     });
     useEffect(() => {
         dispatch(Display({id: sessionStorage.getItem("userId")}));
-    }, [dispatch, props.displayData]);
+    }, [dispatch]);
+    useEffect(() => {
+        dispatch(DisplayPost())
+    }, [dispatch]);
 
     return (
         <>
         { user.result && user.result.userType === "First Login" && <NewUser id="First"/> }        
         { location.pathname === "/home" && <Home user={user}/> }      
         { location.pathname === "/filter" && <Filter user={user}/> }  
-        { location.pathname === "/report" && <Report user={user}/> }  
         { location.pathname === "/contact" && <Contact user={user}/> }  
         <Nav/>
         <Header name="withLogout"/>

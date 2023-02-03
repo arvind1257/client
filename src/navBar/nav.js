@@ -48,7 +48,7 @@ const Nav = () =>{
             <Nav1 style={{position:"fixed"}} id="navbar" className="navbar" value="open">
                 <ul>
                     <li>
-                        <Link to="/home">
+                        <Link className="nolink" to="/home">
                             <Link1 className="link">
                                 <I className="fas fas1 fa-home"></I>
                                 <Span className="nav-item">Home</Span>
@@ -56,18 +56,10 @@ const Nav = () =>{
                         </Link>
                     </li>
                     <li>
-                        <Link to="/filter">
+                        <Link className="nolink" to="/filter">
                             <Link1 className="link">
                                 <I className="fas fas1 fa-filter"></I>
                                 <Span className="nav-item">Filter</Span>
-                            </Link1>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/report">
-                            <Link1 className="link">
-                                <I className='fas fas1 fa-chart-bar'></I>
-                                <Span className="nav-item">Report</Span>
                             </Link1>
                         </Link>
                     </li>
@@ -80,7 +72,7 @@ const Nav = () =>{
                         </button>
                     </li>
                     <li>
-                        <Link to="/contact">
+                        <Link className="nolink" to="/contact">
                             <Link1 className="link">
                                 <I className="fas fas1 fa-envelope"></I>
                                 <Span className="nav-item">Contact</Span>

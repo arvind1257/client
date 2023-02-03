@@ -23,7 +23,6 @@ root.render(
           <Route path="signup" element={<App/>}></Route>
           <Route path="home" element={<HOME/>}></Route>
           <Route path="setting" element={<HOME/>}></Route>
-          <Route path="report" element={<HOME/>}></Route>
           <Route path="filter" element={<HOME/>}></Route>
           <Route path="contact" element={<HOME/>}></Route>
         </Routes>
