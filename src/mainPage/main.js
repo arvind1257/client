@@ -26,8 +26,6 @@ const Main = () => {
     });
     useEffect(() => {
         dispatch(Display({id: sessionStorage.getItem("userId")}));
-    }, [dispatch]);
-    useEffect(() => {
         dispatch(DisplayPost())
     }, [dispatch]);
 

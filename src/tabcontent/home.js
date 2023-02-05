@@ -37,7 +37,6 @@ const Home = (props) => {
     const [arrOfCurrButtons, setArrOfCurrButtons] = useState([])
 
     if(items.data && items.data!==null){
-        console.log(items.data)
         totalpage = items.data.length
         indexoflast = currentPage * itemsPerPage;
         indexoffirst = indexoflast - itemsPerPage;

@@ -2,7 +2,6 @@ import * as api from "../api"
 
 export const PostFeedback = (queryData,navigator) => async(dispatch) => {
     try{
-        console.log(queryData)
         const { data } = await api.postFeedback(queryData)
         dispatch({type:"POST_FEEDBACK_MESSAGE",payload:data});
         dispatch(DisplayPost())

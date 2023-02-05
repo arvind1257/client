@@ -11,6 +11,15 @@
     text-shadow: -1px 1px 0 #fff,1px 1px 0 #fff,1px -1px 0 #fff,-1px -1px 0 #fff;
     
 }
+
+.star{
+    font-size:30px;
+}
+
+.stars{
+    font-size:18px;
+}
+
 .header1{
     z-index:4;
     padding-left:40px;
@@ -291,7 +300,6 @@ textarea {
     padding:10px;
 }
 .Sname{
-    width: "20%";
     vertical-align: top;
 }
 .colan{
