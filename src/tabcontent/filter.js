@@ -24,7 +24,15 @@ const Tabcontent = (props) => {
     const user = props.user
     var currDate = new Date()
     var minDate = new Date()
-    minDate.setDate(1);
+    minDate.setDate(1)
+    minDate.setHours(0)
+    currDate.setHours(0)
+    minDate.setMinutes(0)
+    currDate.setMinutes(0)
+    minDate.setSeconds(0)
+    currDate.setSeconds(0)
+    minDate.setMilliseconds(0)
+    currDate.setMilliseconds(0)
     const [fromDate, setFromDate] = useState(minDate)
     const [toDate, setToDate] = useState(currDate)
     const [mode, setMode] = useState('all') 
@@ -38,23 +46,29 @@ const Tabcontent = (props) => {
     var ibank = 0;
     if(items.data && items.data!==null){
         items.data.map((item) =>{
-            
             let date = format(new Date(item.date),"yyyy-MM-dd")
             let date1 = new Date(date)
+            date1.setHours(0)
+            date1.setMinutes(0)
+            date1.setSeconds(0)
+            date1.setMilliseconds(0)
+            console.log("date1="+date1)
+            console.log("fromdate="+fromDate)
+            console.log(date1.getTime()-fromDate.getTime()>=0)
             if(mode==="all"){
                 if(date1.getTime()-fromDate.getTime()>=0 && toDate.getTime()-date1.getTime()>=0)
                 {
                     filters.push(item)
                     if(item.mode==="income"){
-                        if(item.type==="cash") icash += parseInt(item.amount)
+                        if(item.type==="CASH") icash += parseInt(item.amount)
                         else ibank += parseInt(item.amount)
                     }
                     else if(item.mode==="self"){
-                        if(item.type==="cash") secash += parseInt(item.amount)
+                        if(item.type==="CASH") secash += parseInt(item.amount)
                         else sebank += parseInt(item.amount)
                     }
                     else{
-                        if(item.type==="cash") hecash += parseInt(item.amount)
+                        if(item.type==="CASH") hecash += parseInt(item.amount)
                         else hebank += parseInt(item.amount)
                     }
                 }
@@ -64,11 +78,11 @@ const Tabcontent = (props) => {
                 {
                     filters.push(item)
                     if(item.mode==="self"){
-                        if(item.type==="cash") secash += parseInt(item.amount)
+                        if(item.type==="CASH") secash += parseInt(item.amount)
                         else sebank += parseInt(item.amount)
                     }
                     else{
-                        if(item.type==="cash") hecash += parseInt(item.amount)
+                        if(item.type==="CASH") hecash += parseInt(item.amount)
                         else hebank += parseInt(item.amount)
                     }
                 }
@@ -78,15 +92,15 @@ const Tabcontent = (props) => {
                 {
                     filters.push(item)
                     if(item.mode==="income"){
-                        if(item.type==="cash") icash += parseInt(item.amount)
+                        if(item.type==="CASH") icash += parseInt(item.amount)
                         else ibank += parseInt(item.amount)
                     }
                     else if(item.mode==="self"){
-                        if(item.type==="cash") secash += parseInt(item.amount)
+                        if(item.type==="CASH") secash += parseInt(item.amount)
                         else sebank += parseInt(item.amount)
                     }
                     else{
-                        if(item.type==="cash") hecash += parseInt(item.amount)
+                        if(item.type==="CASH") hecash += parseInt(item.amount)
                         else hebank += parseInt(item.amount)
                     }
                 }

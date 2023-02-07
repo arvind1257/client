@@ -5,8 +5,8 @@ export const signUp = (authData,navigate) => async (dispatch) => {
     try{
         const { data } = await api.signUp(authData)
         console.log(data)
-        data.message ?  dispatch({type:"AUTH_ERROR",payload:data}) : dispatch({type:"Auth",data})
-        data.message ?  navigate('/signup') : navigate('/')
+        data.message && data.status==="Error" ?  dispatch({type:"AUTH_ERROR",payload:data}) : dispatch({type:"Auth",data})
+        data.message && data.status==="Error" ?  navigate('/signup') : navigate('/')
     }
     catch(err)
     {
@@ -17,8 +17,9 @@ export const signUp = (authData,navigate) => async (dispatch) => {
 export const logIn = (authData,navigate) => async (dispatch) => {
     try{
         const { data } = await api.logIn(authData)
-        dispatch({type:"Auth",data})
-        navigate('/home',{state:null});
+        console.log(data)
+        data.message && data.status==="Error" ?  dispatch({type:"AUTH_ERROR",payload:data}) : dispatch({type:"Auth",data})
+        data.message && data.status==="Error" ?  navigate('/') : navigate('/home')
     }
     catch(err)
     {

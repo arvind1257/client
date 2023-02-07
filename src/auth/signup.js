@@ -47,7 +47,7 @@ const Main = (props) => {
             <Form className="form1">
                 { 
                     message.data && message.data.status==="Error" &&
-                    <div className="col-xl-5 col-lg-6 col-md-7 col-sm-8 col-9 aleretRed">
+                    <div className="col-xl-5 col-lg-6 col-md-7 col-sm-8 col-9 alertRed">
                     <p>{message.data.message}</p>
                     </div> 
                 }

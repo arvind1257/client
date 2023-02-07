@@ -45,11 +45,11 @@ const Home = (props) => {
         }
         items.data.map((item) =>{
             if(item.mode==="income"){
-                if(item.type==="cash") icash += parseInt(item.amount)
+                if(item.type==="CASH") icash += parseInt(item.amount)
                 else ibank += parseInt(item.amount)
             }
             else{
-                if(item.type==="cash") ecash += parseInt(item.amount)
+                if(item.type==="CASH") ecash += parseInt(item.amount)
                 else ebank += parseInt(item.amount)
             }
             return ''

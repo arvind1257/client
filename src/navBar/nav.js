@@ -25,7 +25,7 @@ const Nav = () =>{
     const logout = () => {
         localStorage.clear()
         sessionStorage.clear()
-        navigate('/');
+        navigate('/',{state:{message:false}});
     }
 
     return (

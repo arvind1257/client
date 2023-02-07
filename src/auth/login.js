@@ -1,22 +1,25 @@
-import {Link, useNavigate} from "react-router-dom"
+import {Link, useNavigate, useLocation} from "react-router-dom"
 import img1 from "../icon.png"
 import "../main.css"
 import "../dialogBox/dialog.css"
 import "../inputstyle.css"
 import React,{useState} from "react"
 import { logIn } from "../actions/auth"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../main.css"
 import { Form, Slink1 } from "../mediaQuery/mediaQuery"
 
 
 const Main = (props) => {
-    
+    const [click,setClick] = useState(false)
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const location = useLocation()
+    var mess = useSelector(state => state.authReducer)
+    
     const handleSubmit = (e) => {
         e.preventDefault()
         if(!email || !password)
@@ -25,11 +28,40 @@ const Main = (props) => {
         }
         else{
             dispatch(logIn({email,password},navigate))
+            setClick(true)
+        }
+    }
+
+    if(location.state)
+    {
+        if(location.state.load===false && click===true)
+        {
+            setClick(false)
+            navigate('/',{state:null})
+        }
+        if(location.state.message===false)
+        {
+            mess=""
         }
     }
 
     return (
             <Form className="form">
+                {
+                    click===true && <>
+                        <div className="ani1"></div>
+                        <div className="ani2">
+                            <div className="ani3">Loading...</div>
+                            <div>
+                                <img src="coin.png" id="img1" alt="no"/>
+                                <img id="move" src="coin.png" alt="no"/>
+                                <img id="move1" src="coin.png" alt="no"/>
+                                <img id="move2" src="coin.png" alt="no"/>
+                                <img src="icon1.png" id="img2" alt="no"/>
+                            </div>
+                        </div>
+                    </>
+                }
                 <div className="row loginform">
                     <fieldset className="col-xl-4 col-lg-5 col-md-6 col-sm-7 col-8 fieldset center">
                         <legend className="legend center">
@@ -63,8 +95,27 @@ const Main = (props) => {
                                         forgot password?
                                     </Link>
                                 </div>
-                                <br/>
-                                <br/>
+                                {
+                                    mess.data && mess.data.status==="Error" && <>
+                                        <br/><br/>
+                                        <div className="login__field" style={{color:"red"}}>
+                                            {mess.data.message}
+                                        </div>
+                                    </>
+                                }
+                                {
+                                    mess.data && mess.data.status==="Success" && <>
+                                        <br/><br/>
+                                        <div className="login__field" style={{color:"green"}}>
+                                            {mess.data.message}
+                                        </div>
+                                    </>
+                                }
+                                {
+                                    !mess.data && <>
+                                        <br/>
+                                    </>
+                                }
                                 <br/>
                                 <Slink1 className="button">
                                     Login

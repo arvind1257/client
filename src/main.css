@@ -353,7 +353,7 @@ textarea {
 .alertRed{
     background-color:rgba(189, 22, 13,0.6);
     margin:0px auto 10px auto;
-    padding:10px;
+    padding:1px;
     position:relative;
     left:-10px;
 }
