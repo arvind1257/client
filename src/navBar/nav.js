@@ -2,7 +2,7 @@ import "./nav.css"
 import "../fontawesome.css"
 import React, { useState } from 'react'
 import Dialog from '../dialogBox/setting';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Bar1, Bar2, Bar3, Nav1, Link1, Span, I } from "../mediaQuery/mediaQuery";
 
 
@@ -13,7 +13,6 @@ const MyFunction = () => {
 
 const Nav = () =>{
 
-    const location = useLocation();
     const navigate = useNavigate();
     const [display,setDisplay] = useState("false")
     
@@ -27,15 +26,6 @@ const Nav = () =>{
         localStorage.clear()
         sessionStorage.clear()
         navigate('/');
-    }
-
-    if(location.state)
-    {
-        if(location.state.display1==="false" && location.state.close==="settings" && display==="true")
-        {
-            close("false")
-            navigate('/home',{state:null})
-        }
     }
 
     return (

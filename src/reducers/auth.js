@@ -7,6 +7,8 @@ const authReducer = (state={data:null}, actions ) => {
             sessionStorage.setItem('userEmail',User.result.email)
             localStorage.setItem('profile',JSON.stringify({ ...actions?.data}))
             return { ...state,data: actions?.data}
+        case "AUTH_ERROR" :
+            return { ...state,data: actions.payload}   
         default :
             return state;
     }

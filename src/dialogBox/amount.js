@@ -18,7 +18,7 @@ const Amount = (props) => {
     const [amount,setAmount] = useState('')
     const [date,setDate] = useState(currDate)
     const [mode,setMode] = useState('home')
-    const [type,setType] = useState('cash')
+    const [type,setType] = useState('CASH')
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -30,6 +30,7 @@ const Amount = (props) => {
         }
         else{
             dispatch(Add({id,note,amount,type,date,mode},navigate,props.displayData))
+            close1()
         }
 
     }
@@ -72,8 +73,8 @@ const Amount = (props) => {
                                 <center>
                                     <div className="form__group field center">
                                         <select className="form__field" name="type" id='type' onChange={(e) => setType(e.target.value)} required >
-                                            <option value="cash">CASH</option>
-                                            <option value="account">ACCOUNT</option>
+                                            <option value="CASH">CASH</option>
+                                            <option value="UPI">UPI</option>
                                         </select>
                                         <label htmlFor="type" className="form__label">Type</label>
                                     </div>

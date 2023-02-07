@@ -100,7 +100,6 @@ const Tabcontent = (props) => {
             for (let i = 1; i <= Math.ceil(totalpage / itemsPerPage); i++) {
                 pageNumbers.push(i);
             }
-            console.log(pageNumbers)
     }
 
     //Pagination Process Starts

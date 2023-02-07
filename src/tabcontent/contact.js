@@ -69,7 +69,6 @@ const Tabcontent = (props) => {
     }
 
     if(location.state){
-        console.log(location.state.display)
         if(location.state.display===false && textFeedback!=="")
         {
             setTextFeedback("")
@@ -86,7 +85,7 @@ const Tabcontent = (props) => {
             alert("Message can't be Empty");
         }
         else{
-            dispatch(PostFeedback({mess:textFeedback,id:user.result._id,name:user.result.name,count:starCount},navigate))
+            dispatch(PostFeedback({mess:textFeedback,id:user.result._id,name:user.result.fname,count:starCount},navigate))
         }
 
     }

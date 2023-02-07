@@ -11,7 +11,8 @@ const Settings = (props) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [id,setId] = useState("")
-    const [name,setName] = useState("")
+    const [fname,setFname] = useState("")
+    const [lname,setLname] = useState("")
     const [email,setEmail] = useState("")
     const [edit,setEdit] = useState(false)
     const [state1,setState1] = useState(0)
@@ -20,7 +21,8 @@ const Settings = (props) => {
     if(JSON.parse(localStorage.getItem('profile')) && state1===0){
         user = JSON.parse(localStorage.getItem('profile'))
         setId(user.result._id)
-        setName(user.result.name)
+        setFname(user.result.fname)
+        setLname(user.result.lname)
         setEmail(user.result.email)
         setGender(user.result.gender)
         setCashType(user.result.cashType)
@@ -29,12 +31,13 @@ const Settings = (props) => {
 
     const handlesubmit1 = (e) => {
         e.preventDefault()
-        if(!name||!email||!gender||!cashType)
+        if(!fname||!lname||!email||!gender||!cashType)
         {
             alert("Fill all the Details in form")
         }
         else{
-            dispatch(Setting({id,name,email,gender,cashType},navigate,props.displayData))
+            dispatch(Setting({id,fname,lname,email,gender,cashType},navigate,props.displayData))
+            close1()
         }
     }
 
@@ -52,8 +55,12 @@ const Settings = (props) => {
                     <button className="btn1" onClick={close1}>&#10060;</button>
                     </div>
                     <div className="scol">
-                        <Text className='text2'>Name{edit}</Text>
-                        <Scol1 className="scol1"> : <input form="form1" value={name} className="sinput" type="text" name="uname" onChange={(e) => {if(edit) setName(e.target.value)}}/></Scol1>
+                        <Text className='text2'>F Name{edit}</Text>
+                        <Scol1 className="scol1"> : <input form="form1" value={fname} className="sinput" type="text" name="uname" onChange={(e) => {if(edit) setFname(e.target.value)}}/></Scol1>
+                    </div>
+                    <div className="scol">
+                        <Text className='text2'>L Name{edit}</Text>
+                        <Scol1 className="scol1"> : <input form="form1" value={lname} className="sinput" type="text" name="uname" onChange={(e) => {if(edit) setLname(e.target.value)}}/></Scol1>
                     </div>
                     <div className="scol">
                         <Text className='text2'>Email Id</Text>
@@ -69,7 +76,6 @@ const Settings = (props) => {
                     </div>
                     <div className="scol">
                         <Text className='text2'>Curreny</Text>
-                        
                         <Scol1 className="scol1"> : 
                             <select form="form1" className="sinput" value={cashType} onChange={(e) => {if(edit) setCashType(e.target.value)}}>
                                 <option value="&#x20B9;">&#x20B9; Rupees</option>

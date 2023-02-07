@@ -6,7 +6,7 @@ import "../fontawesome.css"
 import Chart from "chart.js/auto";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux"
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { format } from "date-fns"
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Table } from "react-bootstrap"
@@ -28,8 +28,7 @@ const Home = (props) => {
     const user = props.user
     const itemsPerPage = 10
     const navigate = useNavigate()
-    const dispatch = useDispatch()   
-    const location = useLocation()
+    const dispatch = useDispatch() 
     const [index, setIndex] = useState(0)
     const [display,setDisplay] = useState("false")
     const [currentPage,setCurrentPage] = useState(1);
@@ -139,14 +138,7 @@ const Home = (props) => {
     const close = (data) =>{
         setDisplay(data)
     }
-    if(location.state)
-    {
-        if(location.state.display==="false" && location.state.close==="Adding" && display==="true")
-        {
-            close("false")
-            navigate('/home',{state:null})
-        }
-    }
+
         return (
             !items.data || items.data===null ? 
             <><div className="ani1"></div>

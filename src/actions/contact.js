@@ -18,6 +18,6 @@ export const DisplayPost = () => async(dispatch) => {
         dispatch({type:"DISPLAY_POST_MESSAGE",payload:data})   
     }
     catch(err){
-
+        console.log(err)
     }
 }

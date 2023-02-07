@@ -4,15 +4,15 @@ import "../dialogBox/dialog.css"
 import "../inputstyle.css";
 import React,{useState} from "react";
 import { signUp } from "../actions/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Form, Scol1, Slink2, Text } from "../mediaQuery/mediaQuery"
 
 
 const Main = (props) => {
 
-    const [name,setName] = useState('')
-    const [dob,setDob] = useState('')
+    const [fname,setFname] = useState('')
+    const [lname,setLname] = useState('')
     const [gender,setGender] = useState('male')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
@@ -28,29 +28,40 @@ const Main = (props) => {
         }
         else
         {
-            if(!name || !dob || !gender || !confirm){
+            if(!fname || !lname || !gender || !password || !confirm){
                 alert("Fill all the Details in form")
             }
+            else if(password!==confirm)
+            {
+                alert("Password doesn't match");
+            }
             else{
-                dispatch(signUp({name,dob,gender,email,password},navigate))
+                dispatch(signUp({fname,lname,gender,email,password},navigate))
             }
         }
     }
 
+    var message = useSelector(state => state.authReducer)
+
     return (
             <Form className="form1">
+                { 
+                    message.data && message.data.status==="Error" &&
+                    <div className="col-xl-5 col-lg-6 col-md-7 col-sm-8 col-9 aleretRed">
+                    <p>{message.data.message}</p>
+                    </div> 
+                }
                 <div className="row loginform">
                     <fieldset className="col-xl-5 col-lg-6 col-md-7 col-sm-8 col-9 fieldset center signup">
                         <form onSubmit={handleSubmit}>
                         <h1 className="text signup">SIGN UP</h1>
-                        <br/>
                         <div className="scol">
-                            <Text className='text2'>Name</Text>
-                            <Scol1 className="scol1"> : <input className="sinput" type="text" name="uname" onChange={(e) => setName(e.target.value)}/></Scol1>
+                            <Text className='text2'>First name</Text>
+                            <Scol1 className="scol1"> : <input className="sinput" type="text" name="uname" onChange={(e) => setFname(e.target.value)}/></Scol1>
                         </div>
                         <div className="scol">
-                            <Text className='text2'>DOB</Text>
-                            <Scol1 className="scol1"> : <input className="sinput" type="date" name="udate" onChange={(e) => setDob(e.target.value)}/></Scol1>
+                            <Text className='text2'>Last name</Text>
+                            <Scol1 className="scol1"> : <input className="sinput" type="text" name="uname" onChange={(e) => setLname(e.target.value)}/></Scol1>
                         </div>
                         <div className="scol">
                             <Text className='text2'>Gender</Text>
@@ -74,7 +85,7 @@ const Main = (props) => {
                             <Text className='text2'>Confirm<br/>Password</Text>
                             <Scol1 className="scol1"> : <input className="sinput" type="text" name="ucpass" onChange={(e) => setConfirm(e.target.value)}/></Scol1>
                         </div>
-                        <Slink2 className="button" style={{padding:"4px 18%",fontSize:"25px"}}>
+                        <Slink2 className="button" style={{fontSize:"25px"}}>
                             SIGN UP
                         </Slink2>
                         
