@@ -1,5 +1,5 @@
 import axios from "axios"
-const API = axios.create({baseURL:'https://gray-greyhound-boot.cyclic.app'})
+const API = axios.create({baseURL:'https://red-ill-worm.cyclic.app'})
 
 export const logIn = (authData) => API.post('/user/login',authData);
 export const signUp = (authData) => API.post('/user/signup',authData);
