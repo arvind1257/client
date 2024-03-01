@@ -88,7 +88,7 @@ const Modifies = (props) => {
                                     <div className="form__group field center">
                                         <select className="form__field" value={type} name="type" id='type' onChange={(e) => setType(e.target.value)} required >
                                             <option value="CASH">CASH</option>
-                                            <option value="UPI">UPI</option>
+                                            <option value="UPI/CARD">UPI/CARD</option>
                                         </select>
                                         <label htmlFor="type" className="form__label">Type</label>
                                     </div>
@@ -111,6 +111,7 @@ const Modifies = (props) => {
                                             <option value="home">HOME EXPENSE</option>
                                             <option value="self">SELF EXPENSE</option>
                                             <option value="income">INCOME</option>
+                                            <option value="other">OTHER</option>
                                         </select>
                                         <label htmlFor="mode1" className="form__label">Mode</label>
                                     </div>

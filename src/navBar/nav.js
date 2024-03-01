@@ -72,7 +72,7 @@ const Nav = () =>{
                 </ul>
                 <ul>
                     <li>
-                        <button style={{left:"-5px",position:"relative",border:"none",backgroundColor:"#fce80a"}} onClick={() => logout()}>
+                        <button style={{left:"-2px",position:"relative",border:"none",backgroundColor:"#fce80a"}} onClick={() => logout()}>
                             <Link1 className="link1">
                                 <I className="fas fa-sign-out-alt fas1" aria-hidden="true"></I>
                                 <Span className="nav-item">Logout</Span>

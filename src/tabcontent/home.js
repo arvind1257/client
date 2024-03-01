@@ -15,7 +15,13 @@ import Modify from "../dialogBox/modify"
 import { Home1, Atext, SPAN, Tab, Tablemain } from "../mediaQuery/mediaQuery"
 import Pagination from "./pagination";
 
-const Home = (props) => {  
+const Home = (props) => { 
+    
+    var currDate = new Date()
+    var minDate = new Date()
+    minDate.setDate(1);
+    minDate.setHours(0,0,0,0);
+
     var ecash = 0
     var ebank = 0
     var icash = 0
@@ -35,20 +41,26 @@ const Home = (props) => {
     const items = useSelector(state => state.featureReducer)
     const [arrOfCurrButtons, setArrOfCurrButtons] = useState([])
 
-    if(items.data && items.data!==null){
-        totalpage = items.data.length
+    let amt = [];
+
+    if(items.data && items.data!==null && amt.length===0){
+        amt = items.data.filter((item)=>compareDate(item.date));
+    }
+    if(amt.length!==0 && items.data!==null){
+        console.log(amt);
+        totalpage = amt.length
         indexoflast = currentPage * itemsPerPage;
         indexoffirst = indexoflast - itemsPerPage;
-        amounts = items.data.slice(indexoffirst,indexoflast)
+        amounts = amt.slice(indexoffirst,indexoflast)
         for (let i = 1; i <= Math.ceil(totalpage / itemsPerPage); i++) {
             pageNumbers.push(i);
         }
-        items.data.map((item) =>{
+        amt.map((item) =>{
             if(item.mode==="income"){
                 if(item.type==="CASH") icash += parseInt(item.amount)
                 else ibank += parseInt(item.amount)
             }
-            else{
+            else if(item.mode!=="other"){
                 if(item.type==="CASH") ecash += parseInt(item.amount)
                 else ebank += parseInt(item.amount)
             }
@@ -139,6 +151,17 @@ const Home = (props) => {
         setDisplay(data)
     }
 
+    function compareDate(date1){
+        const date11 = new Date(date1);
+        if(date11.getTime()-minDate.getTime() >= 0 && currDate.getTime()-date11.getTime() >=0 ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    console.log(user)
+
         return (
             !items.data || items.data===null ? 
             <><div className="ani1"></div>
@@ -170,6 +193,20 @@ const Home = (props) => {
                         <SPAN className="lh">
                             <i className="fa fa1 fa-bank"></i>:
                             <span className="amount">{user.result.cashType}{ibank}</span>
+                        </SPAN>
+                    </Atext>
+                </Home1>
+                <Home1 className="home1 d-flex">
+                    <Atext className="atext center">
+                        <span className="newtitle"><b>WALLET</b></span><br/>
+                        <SPAN>
+                            <i className="fa fa1 fa-money"></i>:
+                            <span className="amount">{user.result.cashType}{user.result.cash}</span>
+                        </SPAN>
+                        &ensp;
+                        <SPAN className="lh"> 
+                            <i className="fa fa1 fa-bank"></i>:
+                            <span className="amount">{user.result.cashType}{user.result.acc}</span>
                         </SPAN>
                     </Atext>
                 </Home1>
@@ -227,6 +264,11 @@ const Home = (props) => {
                                             }
                                             { item.mode==="income" && 
                                                 <font color="green">
+                                                    <b>{user.result.cashType}{item.amount}</b>
+                                                </font> 
+                                            }
+                                            { item.mode==="other" && 
+                                                <font color="black">
                                                     <b>{user.result.cashType}{item.amount}</b>
                                                 </font> 
                                             }

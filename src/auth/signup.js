@@ -22,6 +22,7 @@ const Main = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        var regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})");
         if(!email || !password)
         {
             alert("Email and Password can't be Empty")
@@ -34,6 +35,9 @@ const Main = (props) => {
             else if(password!==confirm)
             {
                 alert("Password doesn't match");
+            }
+            else if(!regex.test(password)){
+                alert("The Password doesn't satisfies the condition\nAtleast 1 Lowercase alphabet\nAtleast 1 Uppercase alphabet\nAtleast 1 Special Character\nAtleast 1 Number\nMinimum of 8 characters");
             }
             else{
                 dispatch(signUp({fname,lname,gender,email,password},navigate))
@@ -56,11 +60,11 @@ const Main = (props) => {
                         <form onSubmit={handleSubmit}>
                         <h1 className="text signup">SIGN UP</h1>
                         <div className="scol">
-                            <Text className='text2'>First name</Text>
+                            <Text className='text2'>First Name</Text>
                             <Scol1 className="scol1"> : <input className="sinput" type="text" name="uname" onChange={(e) => setFname(e.target.value)}/></Scol1>
                         </div>
                         <div className="scol">
-                            <Text className='text2'>Last name</Text>
+                            <Text className='text2'>Last Name</Text>
                             <Scol1 className="scol1"> : <input className="sinput" type="text" name="uname" onChange={(e) => setLname(e.target.value)}/></Scol1>
                         </div>
                         <div className="scol">
@@ -75,15 +79,15 @@ const Main = (props) => {
                         </div>
                         <div className="scol">
                             <Text className='text2'>Email ID</Text>
-                            <Scol1 className="scol1"> : <input className="sinput" type="text" name="email" onChange={(e) => setEmail(e.target.value)} /></Scol1>
+                            <Scol1 className="scol1"> : <input className="sinput" type="email" name="email" onChange={(e) => setEmail(e.target.value)} /></Scol1>
                         </div>
                         <div className="scol">
                             <Text className='text2'>Password</Text>
-                            <Scol1 className="scol1"> : <input className="sinput" type="text" name="upass" onChange={(e) => setPassword(e.target.value)}/></Scol1>
+                            <Scol1 className="scol1"> : <input className="sinput" title="The password must contain lowercase,uppercase,numbers,speical characters, and minimum of 8 characters." type="password" name="upass" onChange={(e) => setPassword(e.target.value)}/></Scol1>
                         </div>
                         <div className="scol">
                             <Text className='text2'>Confirm<br/>Password</Text>
-                            <Scol1 className="scol1"> : <input className="sinput" type="text" name="ucpass" onChange={(e) => setConfirm(e.target.value)}/></Scol1>
+                            <Scol1 className="scol1"> : <input className="sinput" type="password" name="ucpass" onChange={(e) => setConfirm(e.target.value)}/></Scol1>
                         </div>
                         <Slink2 className="button" style={{fontSize:"25px"}}>
                             SIGN UP

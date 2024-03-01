@@ -103,10 +103,10 @@ export const Box = Styled.div`
         width:80%;
     }    
     @media (max-height: 750px) { 
-        top:25%;
+        top:12%;
     }
     @media (max-height: 550px) { 
-        top:15%;
+        top:5%;
     }
 `;
 export const Header = Styled.div`
@@ -279,11 +279,9 @@ export const Tab = Styled.div`
     }
 `;
 export const Contact = Styled.div`
-    @media (max-width: 800px){
-        width:90%;
-    }
+    
     @media (max-width: 550px){
-        width:100%;
+        width:80%;
     }
 `;
 export const Message = Styled.div`

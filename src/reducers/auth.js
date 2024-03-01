@@ -3,6 +3,7 @@ const authReducer = (state={data:null}, actions ) => {
         case "Auth" : 
             localStorage.clear()
             const User = JSON.parse(JSON.stringify({ ...actions?.data}))
+            console.log(User)
             sessionStorage.setItem('userId',User.result._id)
             sessionStorage.setItem('userEmail',User.result.email)
             localStorage.setItem('profile',JSON.stringify({ ...actions?.data}))

@@ -267,7 +267,7 @@
 
 .contact{
     left:10%;
-    width:80%;
+    width:60%;
     position: relative;
 }
 .field3{
@@ -275,8 +275,6 @@
     float:left;
 }
 .field4{
-    right:30%;
-    position: relative;
     float:right;
 }
 input.form__field.field4 {

@@ -18,6 +18,8 @@ const Settings = (props) => {
     const [state1,setState1] = useState(0)
     const [gender,setGender] = useState("")
     const [cashType,setCashType] = useState("")
+    const [cash,setCash] = useState(0);
+    const [acc,setAcc] = useState(0)
     if(JSON.parse(localStorage.getItem('profile')) && state1===0){
         user = JSON.parse(localStorage.getItem('profile'))
         setId(user.result._id)
@@ -26,17 +28,19 @@ const Settings = (props) => {
         setEmail(user.result.email)
         setGender(user.result.gender)
         setCashType(user.result.cashType)
+        setCash(user.result.cash)
+        setAcc(user.result.acc);
         setState1(1);
     }
 
     const handlesubmit1 = (e) => {
         e.preventDefault()
-        if(!fname||!lname||!email||!gender||!cashType)
+        if(!fname||!lname||!email||!gender||!cashType||!cash||!acc)
         {
             alert("Fill all the Details in form")
         }
         else{
-            dispatch(Setting({id,fname,lname,email,gender,cashType},navigate,props.displayData))
+            dispatch(Setting({id,fname,lname,email,gender,cashType,cash,acc},navigate,props.displayData))
             close1()
         }
     }
@@ -75,8 +79,18 @@ const Settings = (props) => {
                         </Scol1>
                     </div>
                     <div className="scol">
+                        <Text className='text2'>Cash</Text>
+                        <Scol1 className="scol1"> : <input form="form1" className="sinput" type="number" name="cash" value={cash}  onChange={(e) => {if(edit) setCash(e.target.value)}} />
+                        </Scol1>
+                    </div>
+                    <div className="scol">
+                        <Text className='text2'>Account</Text>
+                        <Scol1 className="scol1"> : <input form="form1" className="sinput" type="number" name="acc" value={acc}  onChange={(e) => {if(edit) setAcc(e.target.value)}} />
+                        </Scol1>
+                    </div>
+                    <div className="scol">
                         <Text className='text2'>Curreny</Text>
-                        <Scol1 className="scol1"> : 
+                        <Scol1 className="scol1"> :&ensp;
                             <select form="form1" className="sinput" value={cashType} onChange={(e) => {if(edit) setCashType(e.target.value)}}>
                                 <option value="&#x20B9;">&#x20B9; Rupees</option>
                                 <option value="&#36;">&#36; Dollars</option>

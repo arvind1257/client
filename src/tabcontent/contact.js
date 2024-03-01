@@ -3,150 +3,96 @@ import "../main.css"
 import "../slide.css"
 import "../fontawesome.css"
 import {useState} from "react"
-import Mess1 from "./feedback_mess"
-import { PostFeedback } from "../actions/contact"
+import moment from "moment";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { PostMessage,DeleteMessage } from "../actions/contact"
 import { useNavigate, useLocation } from "react-router-dom" 
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { Contact } from "../mediaQuery/mediaQuery"
 const Tabcontent = (props) => {
-    const user = props.user
-    const [textFeedback, setTextFeedback] = useState("")
-    var maxValue2 = []
-    var feedback1 = []
-    const [feedback, setFeedback] = useState([{}])
-    const [feedback2,setFeedback2] = useState([{}])
-    const [starCount,setStarCount] = useState(0)
-    const items = useSelector(state => state.contactReducer)
-    if(items.data && items.data!==null && feedback.length===1 && !feedback[0]._id){
-
-        setFeedback(items.data)
-        setFeedback2(items.data)
-    }
-    function isCheck1(items) {
-        if (items.mess.includes(document.getElementById("mySearch2").value)) {
-            maxValue2.push(items.messno)
-            return true
-        } else {
-            return false
-        } 
-    }
-
-    const click1 = () => {
-        maxValue2 = []
-        feedback1 = [] 
-        setFeedback2(feedback.filter(isCheck1))
-    }
-
-    feedback2.map((items) => {
-        if(maxValue2.indexOf(items.messno) === -1){
-            maxValue2.push(items.messno)
-        }
-        return items
-    })
-
-    for (let i = 0; i < maxValue2.length; i++) {
-        feedback1.push (<Mess1 user={user} id={maxValue2[i]} data={feedback2}/>)
-    }
+    const [user,setUser] = React.useState(props.user);
+    const [textMessage, setTextMessage] = useState("")
+    var toolbarOptions = [[{ 'list': 'bullet' }, 'bold', 'italic', 'underline', { 'list': 'ordered' }, 'link']];
+    const module = {
+        toolbar: toolbarOptions,
+    };
 
     const location = useLocation()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const setstarCount = (no) => {
-        for(let i=1;i<=no;i++)
-        {
-            document.getElementById("s_"+i).classList.remove("fa-star-o");
-            document.getElementById("s_"+i).classList.add("fa-star");
-            document.getElementById("s_"+i).style.color="#fce80a";  
-        }
-        for(let i=no+1;i<=5;i++)
-        {
-            document.getElementById("s_"+i).classList.remove("fa-star");
-            document.getElementById("s_"+i).classList.add("fa-star-o");
-            document.getElementById("s_"+i).style.color="black";
-        }
-        setStarCount(no)        
-    }
-
+        
     if(location.state){
-        if(location.state.display===false && textFeedback!=="")
+        if(location.state.display===false && user.result.message.length!==JSON.parse(localStorage.getItem("profile")).result.message.length )
         {
-            setTextFeedback("")
-            setFeedback([{}])
-            setstarCount(0)
+            setUser(JSON.parse(localStorage.getItem("profile")))
+            setTextMessage("")
             navigate('/contact',{state:null})
         }
     }
 
-    const handlefunction = (e) => {
-        e.preventDefault()
-        if(!textFeedback)
+    const handlefunction = () => {
+        if(!textMessage)
         {
             alert("Message can't be Empty");
         }
         else{
-            dispatch(PostFeedback({mess:textFeedback,id:user.result._id,name:user.result.fname,count:starCount},navigate))
+            dispatch(PostMessage({mess:textMessage,id:user.result._id},navigate))
         }
 
     }
 
-    const colorChange1 = (id) => {
-        if(starCount===0){
-        for(let i=1;i<=id;i++)
-        {
-            document.getElementById("s_"+i).classList.remove("fa-star-o");
-            document.getElementById("s_"+i).classList.add("fa-star");
-            document.getElementById("s_"+i).style.color="#fce80a";
-               
-        }
-        }
-    }
-    const colorChange2 = (id) => {
-        if(starCount===0){
-        for(let i=1;i<=id;i++)
-        {
-            document.getElementById("s_"+i).classList.remove("fa-star");
-            document.getElementById("s_"+i).classList.add("fa-star-o");
-            document.getElementById("s_"+i).style.color="black";
-        }
-        }
+    const handleDelete = (id) =>{
+        console.log({_id:user.result._id,id})
+        dispatch(DeleteMessage({_id:user.result._id,id},navigate));
     }
 
+    console.log(textMessage)
+
+    console.log(location);
     
 
         return (
             <div className="tabcontent1 center" id="contact">
-                <Contact id="feedback" className="contact">
-                    <form onSubmit={handlefunction}>
+                <Contact id="message" className="contact">
                         <div className="question">
-                            <label htmlFor="feedback">Post your Feedback :</label>
+                            <label htmlFor="mesaage">Post your Notes :</label>
+                            <br/>
+                            <ReactQuill style={{backgroundColor:"white"}} onChange={(e) => setTextMessage(e)} theme="snow" modules={module} value={textMessage} />
+                                        
                             <div className="form__group field3">
-                                <i className="fa fa-star-o star" id="s_1" onMouseOver={() => colorChange1(1)} onMouseLeave={() => colorChange2(1)} onClick={() => setstarCount(1)}></i>
-                                <i className="fa fa-star-o star" id="s_2" onMouseOver={() => colorChange1(2)} onMouseLeave={() => colorChange2(2)} onClick={() => setstarCount(2)}></i>
-                                <i className="fa fa-star-o star" id="s_3" onMouseOver={() => colorChange1(3)} onMouseLeave={() => colorChange2(3)} onClick={() => setstarCount(3)}></i>
-                                <i className="fa fa-star-o star" id="s_4" onMouseOver={() => colorChange1(4)} onMouseLeave={() => colorChange2(4)} onClick={() => setstarCount(4)}></i>
-                                <i className="fa fa-star-o star" id="s_5" onMouseOver={() => colorChange1(5)} onMouseLeave={() => colorChange2(5)} onClick={() => setstarCount(5)}></i>
-                            </div>
-                            <br/><textarea value={textFeedback} onChange={(e) => setTextFeedback(e.target.value)} name="feedback" rows="4" cols="60"></textarea>
-                            <div className="form__group field3">
-                                <input type="submit" className="button-33 field4" value="POST"/>
+                                <input type="button" onClick={()=>handlefunction()} className="button-33 field4" value="POST"/>
                             </div>
                         </div>
-                    </form>
                         <br/>
                         <br/>
                         <br/>
                         <br/>
                         <div id="message2" className="message">
                             <div className="search1">
-                                Posted Feedbacks :
-                                <input className="search" type="search" id="mySearch2" name="search2" onKeyUp={click1} placeholder="Search.."/>
+                                Posted Message :
                             </div>
-                            {
-                                maxValue2.map((items,i) => {
-                                    return <Mess1 key={i} user={user} id={items} data={feedback2}/>
-                                })
-                            }
+                            
+                            { user.result.message.map((items) => 
+                            <div key={items._id} className="mess">
+                                <table style={{ borderCollapse: "collapse", width: "100%" }} cellPadding="10px">
+                                    <tbody>
+                                        <tr>
+                                            <td className="Smess" colSpan={2}>
+                                            <div style={{lineHeight: "0.5em"}} className='message-description' dangerouslySetInnerHTML={{ __html: items.mess }} />{}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left">{moment(items.postedOn).format("MMMM DD,YYYY HH:mm:ss")}</td>
+                                            <td align="right"><button onClick={()=>handleDelete(items._id)} style={{border:"none",backgroundColor:"inherit",color:"gray",cursor:"pointer"}}>Delete</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                            </div>
+                            
+                            ) }
                         </div>
                     </Contact>
                 

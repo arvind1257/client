@@ -3,7 +3,7 @@ import * as api from "../api"
 export const Add = (featureData,navigate,displayData) => async (dispatch) => {
     try{
         const { data } = await api.Add(featureData)
-        dispatch({type:"FEATURES_DATA",data})
+        dispatch({type:"Auth",data})
         dispatch(Display(displayData))
         navigate('/home',{state:{display:"false",close:"Adding"}});
     }
@@ -26,7 +26,7 @@ export const Display = (displayData) => async (dispatch) => {
 export const Modify = (featureData,navigate,displayData) => async (dispatch) => {
     try{
         const { data } = await api.Modify(featureData)
-        dispatch({type:"FEATURES_DATA",data})
+        dispatch({type:"Auth",data})
         dispatch(Display(displayData))
         navigate('/home',{state:{display:"false",close:"Adding"}});
     }
@@ -39,7 +39,7 @@ export const Modify = (featureData,navigate,displayData) => async (dispatch) => 
 export const Delete = (featureData,navigate,displayData) => async (dispatch) => {
     try{
         const { data } = await api.Delete(featureData)
-        dispatch({type:"FEATURES_DATA",data})
+        dispatch({type:"Auth",data})
         dispatch(Display(displayData))
         navigate('/home',{state:null});
     }

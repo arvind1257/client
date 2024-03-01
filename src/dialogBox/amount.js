@@ -29,6 +29,7 @@ const Amount = (props) => {
             alert("Fill all the Details in form")
         }
         else{
+            //console.log({id,note,amount,type,date,mode});
             dispatch(Add({id,note,amount,type,date,mode},navigate,props.displayData))
             close1()
         }
@@ -74,7 +75,7 @@ const Amount = (props) => {
                                     <div className="form__group field center">
                                         <select className="form__field" name="type" id='type' onChange={(e) => setType(e.target.value)} required >
                                             <option value="CASH">CASH</option>
-                                            <option value="UPI">UPI</option>
+                                            <option value="UPI/CARD">UPI/CARD</option>
                                         </select>
                                         <label htmlFor="type" className="form__label">Type</label>
                                     </div>
@@ -85,7 +86,7 @@ const Amount = (props) => {
                                 <td >
                                 <center>
                                     <div className="form__group field center">
-                                        <DatePicker className="form__field" selected={date} onChange={(date) => setDate(date)} minDate={minDate} maxDate={currDate} dateFormat='dd MMM, yyyy' isClearable/>
+                                        <DatePicker className="form__field" selected={date} onChange={(date) => setDate(date)} maxDate={currDate} dateFormat='dd MMM, yyyy' isClearable/>
                                         <label htmlFor="date" className="form__label">Date</label>
                                     </div>
                                 </center>
@@ -97,6 +98,7 @@ const Amount = (props) => {
                                             <option value="home">HOME EXPENSE</option>
                                             <option value="self">SELF EXPENSE</option>
                                             <option value="income">INCOME</option>
+                                            <option value="other">OTHER</option>
                                         </select>
                                         <label htmlFor="mode1" className="form__label">Mode</label>
                                     </div>
