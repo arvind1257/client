@@ -1,6 +1,6 @@
 import axios from "axios"
-//const API = axios.create({baseURL:'https://red-ill-worm.cyclic.app'})
-const API = axios.create({baseURL:'http://localhost:5000/'})
+const API = axios.create({baseURL:'https://red-ill-worm.cyclic.app'})
+//const API = axios.create({baseURL:'http://localhost:5000/'})
 export const logIn = (authData) => API.post('/user/login',authData);
 export const signUp = (authData) => API.post('/user/signup',authData);
 export const newUser = (authData) => API.post('/user/usertype',authData);
