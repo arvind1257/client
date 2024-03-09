@@ -54,8 +54,7 @@ const Home = (props) => {
             pageNumbers.push(i);
         }
         amt.map((item) =>{
-            
-            if(item.mode!=="other"){
+            if(item.mode!=="income"){
                 if(item.type==="CASH") ecash += parseInt(item.amount)
                 else ebank += parseInt(item.amount)
             }
