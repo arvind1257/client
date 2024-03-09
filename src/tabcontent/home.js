@@ -184,20 +184,6 @@ const Home = (props) => {
                         </SPAN>
                     </Atext>
                     <Atext className="atext center">
-                        <span className="newtitle"><b>INCOME</b></span><br/>
-                        <SPAN>
-                            <i className="fa fa1 fa-money"></i>:
-                            <span className="amount">{user.result.cashType}{icash}</span>
-                        </SPAN>
-                        &ensp;
-                        <SPAN className="lh">
-                            <i className="fa fa1 fa-bank"></i>:
-                            <span className="amount">{user.result.cashType}{ibank}</span>
-                        </SPAN>
-                    </Atext>
-                </Home1>
-                <Home1 className="home1">
-                    <Atext className="atext center">
                         <span className="newtitle"><b>WALLET</b></span><br/>
                         <SPAN>
                             <i className="fa fa1 fa-money"></i>:
@@ -209,19 +195,8 @@ const Home = (props) => {
                             <span className="amount">{user.result.cashType}{user.result.acc}</span>
                         </SPAN>
                     </Atext>
-                    <Atext className="atext center">
-                        <span className="newtitle"><b>TOTAL</b></span><br/>
-                        <SPAN>
-                            <i className="fa fa1 fa-money"></i>:
-                            <span className="amount">{user.result.cashType}{(parseInt(user.result.cash)+parseInt(ecash))}</span>
-                        </SPAN>
-                        &ensp;
-                        <SPAN className="lh"> 
-                            <i className="fa fa1 fa-bank"></i>:
-                            <span className="amount">{user.result.cashType}{(parseInt(user.result.acc)+parseInt(ebank))}</span>
-                        </SPAN>
-                    </Atext>
                 </Home1>
+                
                 <Home1 className="home1">
                     <Tab className="tab">
                         <span className="color yellow">&ensp;&ensp;</span>
