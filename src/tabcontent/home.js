@@ -24,8 +24,6 @@ const Home = (props) => {
 
     var ecash = 0
     var ebank = 0
-    var icash = 0
-    var ibank = 0
     var amounts = []
     var totalpage = 0
     var indexoflast = 0
@@ -56,11 +54,8 @@ const Home = (props) => {
             pageNumbers.push(i);
         }
         amt.map((item) =>{
-            if(item.mode==="income"){
-                if(item.type==="CASH") icash += parseInt(item.amount)
-                else ibank += parseInt(item.amount)
-            }
-            else if(item.mode!=="other"){
+            
+            if(item.mode!=="other"){
                 if(item.type==="CASH") ecash += parseInt(item.amount)
                 else ebank += parseInt(item.amount)
             }
